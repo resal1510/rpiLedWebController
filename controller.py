@@ -5,7 +5,7 @@ from rpi_ws281x import *
 import argparse
 
 app= Flask(__name__)
-
+isOn = False
 
 
 # LED strip configuration:
@@ -48,19 +48,32 @@ def index():
 
 @app.route('/A')
 def led1on():
+    for i in range(strip.numPixels()):
+        strip.setPixelColor(i, (255, 0, 0))
+        strip.show()
+        time.sleep(0/1000.0)
     return render_template('webpage.html')
 
 @app.route('/a')
 def led1off():
+    for i in range(strip.numPixels()):
+        strip.setPixelColor(i, (0, 255, 0))
+        strip.show()
+        time.sleep(0/1000.0)
     return render_template('webpage.html')
 
 @app.route('/B')
 def led2on():
+    for i in range(strip.numPixels()):
+        strip.setPixelColor(i, (0, 0, 255))
+        strip.show()
+        time.sleep(0/1000.0)
     return render_template('webpage.html')
 
 @app.route('/b')
 def led2off():
-    while True:
+    isOn = True
+    while isOn:
         print ('Color wipe animations.')
         colorWipe(strip, Color(50, 50, 255))  # Violet wipe
         colorWipe(strip, Color(230, 0, 255))  # Blue wipe
@@ -72,6 +85,7 @@ def led3on():
 
 @app.route('/c')
 def led3off():
+    isOn = False
     colorWipe(strip, Color(0,0,0), 5)
     return render_template('webpage.html')
 
