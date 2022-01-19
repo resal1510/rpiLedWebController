@@ -33,6 +33,25 @@ def colorStatic(strip, color, wait_ms=0):
         strip.show()
         time.sleep(wait_ms/1000.0)
 
+def wheel(pos):
+    """Generate rainbow colors across 0-255 positions."""
+    if pos < 85:
+        return Color(pos * 3, 255 - pos * 3, 0)
+    elif pos < 170:
+        pos -= 85
+        return Color(255 - pos * 3, 0, pos * 3)
+    else:
+        pos -= 170
+        return Color(0, pos * 3, 255 - pos * 3)
+
+def rainbow(strip, wait_ms=20, iterations=1):
+    """Draw rainbow that fades across all pixels at once."""
+    for j in range(256*iterations):
+        for i in range(strip.numPixels()):
+            strip.setPixelColor(i, wheel((i+j) & 255))
+        strip.show()
+        time.sleep(wait_ms/1000.0)
+
 # Main program logic follows:
 if __name__ == '__main__':
     # Process arguments
@@ -60,18 +79,12 @@ def led1on():
 
 @app.route('/a')
 def led1off():
-    for i in range(strip.numPixels()):
-        strip.setPixelColor(i, (0, 255, 0))
-        strip.show()
-        time.sleep(0/1000.0)
+    colorStatic(strip, Color(0, 255, 0))
     return render_template('webpage.html')
 
 @app.route('/B')
 def led2on():
-    for i in range(strip.numPixels()):
-        strip.setPixelColor(i, (0, 0, 255))
-        strip.show()
-        time.sleep(0/1000.0)
+    colorStatic(strip, Color(0, 0, 255))
     return render_template('webpage.html')
 
 @app.route('/b')
@@ -91,6 +104,26 @@ def led3on():
 def led3off():
     isOn = False
     colorWipe(strip, Color(0,0,0), 5)
+    return render_template('webpage.html')
+
+@app.route('/bright25')
+def bright25():
+    LED_BRIGHTNESS = (255/100)*25
+    return render_template('webpage.html')
+
+@app.route('/bright50')
+def bright50():
+    LED_BRIGHTNESS = (255/100)*50
+    return render_template('webpage.html')
+
+@app.route('/bright75')
+def bright75():
+    LED_BRIGHTNESS = (255/100)*75
+    return render_template('webpage.html')
+
+@app.route('/bright100')
+def bright100():
+    LED_BRIGHTNESS = 255
     return render_template('webpage.html')
 
 if __name__=="__main__":
