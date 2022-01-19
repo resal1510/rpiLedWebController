@@ -3,6 +3,7 @@ from flask import render_template
 import time
 from rpi_ws281x import *
 import argparse
+from math import *
 
 app= Flask(__name__)
 isOn = False
@@ -108,21 +109,21 @@ def led3off():
 
 @app.route('/bright25')
 def bright25():
-    LED_BRIGHTNESS = (255/100)*25
+    LED_BRIGHTNESS = floor((255/100)*25)
     strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
     strip.begin()
     return render_template('webpage.html')
 
 @app.route('/bright50')
 def bright50():
-    LED_BRIGHTNESS = (255/100)*50
+    LED_BRIGHTNESS = floor((255/100)*50)
     strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
     strip.begin()
     return render_template('webpage.html')
 
 @app.route('/bright75')
 def bright75():
-    LED_BRIGHTNESS = (255/100)*75
+    LED_BRIGHTNESS = floor((255/100)*75)
     strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
     strip.begin()
     return render_template('webpage.html')
