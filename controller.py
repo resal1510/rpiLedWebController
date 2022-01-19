@@ -109,21 +109,25 @@ def led3off():
 @app.route('/bright25')
 def bright25():
     LED_BRIGHTNESS = (255/100)*25
+    strip.begin()
     return render_template('webpage.html')
 
 @app.route('/bright50')
 def bright50():
     LED_BRIGHTNESS = (255/100)*50
+    strip.begin()
     return render_template('webpage.html')
 
 @app.route('/bright75')
 def bright75():
     LED_BRIGHTNESS = (255/100)*75
+    strip.begin()
     return render_template('webpage.html')
 
 @app.route('/bright100')
 def bright100():
     LED_BRIGHTNESS = 255
+    strip.begin()
     return render_template('webpage.html')
 
 if __name__=="__main__":
