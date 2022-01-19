@@ -133,6 +133,12 @@ def bright100():
     strip.begin()
     return render_template('webpage.html')
 
+@app.route('/bri/<brightness>')
+def bri():
+    strip.setBrightness(int(brightness))
+    strip.begin()
+    return render_template('webpage.html')
+
 if __name__=="__main__":
     print("Start")
     app.run(debug=True, host='192.168.1.116')

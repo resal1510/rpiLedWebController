@@ -17,5 +17,8 @@
   <a href=\bright50><button>50%</button></a><br>
   <a href=\bright75><button>75%</button></a><br>
   <a href=\bright100><button>100%</button></a><br>
+  <br><br>
+  <input type="range" value="24" min="0" max="255" oninput="document.getElementById('test').href = '\\bri\\'+this.value; ">
+  <a href="" id="test"><button>Change brightness</button></a><br>
   </body>
 </html>
