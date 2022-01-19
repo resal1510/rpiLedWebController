@@ -109,8 +109,7 @@ def led3off():
 
 @app.route('/bright25')
 def bright25():
-    LED_BRIGHTNESS = floor((255/100)*25)
-    strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
+    strip.setBrightness(floor((255/100)*25))
     strip.begin()
     return render_template('webpage.html')
 
@@ -130,8 +129,7 @@ def bright75():
 
 @app.route('/bright100')
 def bright100():
-    LED_BRIGHTNESS = 255
-    strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
+    strip.setBrightness(255)
     strip.begin()
     return render_template('webpage.html')
 
