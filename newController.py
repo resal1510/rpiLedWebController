@@ -51,9 +51,17 @@ def rainbow(strip, wait_ms=20, iterations=1):
         time.sleep(wait_ms/1000.0)
 
 
-
-
 def ledControl(action, isOn, brightness, last):
+    if isOn:
+        whileOn = True
+    else:
+        whileOn = False
+
+    if action == "off":
+        whileOn = False
+        strip.clear()
+        strip.begin()
+
     if brightness != None:
         strip.setBrightness(int(brightness))
         strip.begin()
@@ -69,13 +77,9 @@ def ledControl(action, isOn, brightness, last):
     if action == "rainbow":
         rainbow(strip)
     if action == "w-bluepurple":
-        while isOn:
+        while whileOn:
             colorWipe(strip, Color(50, 50, 255))
             colorWipe(strip, Color(230, 0, 255))
-
-
-    if action == "off":
-        colorWipe(strip, Color(0,0,0), 1)
 
 # Main program logic follows:
 if __name__ == '__main__':
