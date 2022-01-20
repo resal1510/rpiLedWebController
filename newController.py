@@ -60,7 +60,7 @@ def ledControl(action, isOn, brightness, last):
 
     if action == "off":
         whileOn = False
-        strip.clear()
+        pixels.deinit()
         strip.begin()
 
     if brightness != None:
