@@ -137,8 +137,6 @@ def bright100():
 @app.route('/bri/<brightness>')
 def bri(brightness):
     strip.setBrightness(int(brightness))
-    lastColor = strip.getPixelColor(0)
-    strip.fill(lastColor, 0)
     strip.begin()
     return redirect("192.168.1.116/", code=302)
     #return render_template('webpage.html')
