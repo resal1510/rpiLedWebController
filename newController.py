@@ -61,7 +61,8 @@ def ledControl(action, isOn, brightness, last):
         return redirect("/"+last, code=302)
 
     if action == "red":
-        colorStatic(strip, Color(255, 0, 0)); return render_template('webpage.html')
+        colorStatic(strip, Color(255, 0, 0))
+        return render_template('webpage.html')
     if action == "green":
         colorStatic(strip, Color(0, 255, 0))
     if action == "blue":
