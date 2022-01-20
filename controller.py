@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,redirect
 from flask import render_template
 import time
 from rpi_ws281x import *
