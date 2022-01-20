@@ -25,12 +25,11 @@ def colorWipe(strip, color, wait_ms=50):
         strip.show()
         time.sleep(wait_ms/1000.0)
 
-def colorStatic(strip, color, wait_ms=0):
+def colorStatic(strip, color):
     """Wipe color across display a pixel at a time."""
     for i in range(strip.numPixels()):
         strip.setPixelColor(i, color)
         strip.show()
-        time.sleep(wait_ms/1000.0)
 
 def wheel(pos):
     """Generate rainbow colors across 0-255 positions."""
@@ -67,6 +66,17 @@ def ledControl(action, isOn, brightness, last):
     if action == "blue":
         colorStatic(strip, Color(0, 0, 255))
 
+    if action == "rainbow":
+        rainbow(strip)
+    if action == "w-bluepurple":
+        while isOn:
+            colorWipe(strip, Color(50, 50, 255))
+            colorWipe(strip, Color(230, 0, 255))
+
+
+    if action == "off":
+        colorWipe(strip, Color(0,0,0), 1)
+
 # Main program logic follows:
 if __name__ == '__main__':
     # Process arguments
@@ -79,46 +89,26 @@ if __name__ == '__main__':
     # Intialize the library (must be called once before other functions).
     strip.begin()
 
-    print ('Press Ctrl-C to quit.')
-    if not args.clear:
-        print('Use "-c" argument to clear LEDs on exit')
-
 @app.route('/')
-def index():
-    return render_template('webpage.html')
+def index(): return render_template('webpage.html')
 
 @app.route('/A')
 def routeA(): ledControl("red", False, None, None); return render_template('webpage.html')
 
 @app.route('/a')
-def routea(): ledControl("green", False, None, None)
+def routea(): ledControl("green", False, None, None); return render_template('webpage.html')
 
 @app.route('/B')
-def routeB(): ledControl("blue", False, None, None)
+def routeB(): ledControl("blue", False, None, None); return render_template('webpage.html')
 
 @app.route('/b')
-def led2off():
-    isOn = True
-    while isOn:
-        print ('Color wipe animations.')
-        colorWipe(strip, Color(50, 50, 255))  # Violet wipe
-        colorWipe(strip, Color(230, 0, 255))  # Blue wipe
-    return render_template('webpage.html')
-
-@app.route('/C')
-def led3on():
-    lastChoosed = "C"
-    return render_template('webpage.html')
+def routeb(): ledControl("w-bluepurple", True, None, None); return render_template('webpage.html')
 
 @app.route('/c')
-def led3off():
-    isOn = False
-    lastChoosed = "c"
-    colorWipe(strip, Color(0,0,0), 2)
-    return render_template('webpage.html')
+def routec(): ledControl("off", False, None, None); return render_template('webpage.html')
 
 @app.route('/bri/<brightness>/<last>')
-def routeBri(brightness, last): ledControl("blue", False, brightness, last)
+def routeBri(brightness, last): ledControl("blue", False, brightness, last); return render_template('webpage.html')
 
 if __name__=="__main__":
     print("Start")
