@@ -121,7 +121,7 @@ def routec(): ledControl("off", False, None, None); return render_template('webp
 def routeBri(brightness, last): ledControl("blue", False, int(brightness), last); return render_template('webpage.html')
 
 @app.route('/rgb/<r>-<g>-<b>')
-def routeRGB(r, g, b): ledControl("RGB", False, None, None, Color(r, g, b)); return render_template('webpage.html')
+def routeRGB(r, g, b): ledControl("RGB", False, None, None, Color(int(r), int(g), int(b))); return render_template('webpage.html')
 
 if __name__=="__main__":
     print("Start")
