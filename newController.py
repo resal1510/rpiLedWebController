@@ -64,8 +64,9 @@ def ledControl(action, isOn, brightness, last):
         strip.begin()
 
     if brightness != None:
-        floatBr = float((int(brightness))/255)
+        floatBr = float((int(brightness)) / 255)
         strip.setBrightness(int(brightness))
+        print(floatBr)
         pixels.brightness(floatBr)
         strip.begin()
         pixels.show()
