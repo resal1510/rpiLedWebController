@@ -138,9 +138,9 @@ def bright100():
 def bri(brightness):
     strip.setBrightness(int(brightness))
     lastColor = strip.getPixelColor(0)
-    print(lastColor)
+    strip.fill(lastColor, 0)
     strip.begin()
-    return redirect("192.168.1.116/"+lastChoosed, code=302)
+    return redirect("192.168.1.116/", code=302)
     #return render_template('webpage.html')
 
 if __name__=="__main__":
