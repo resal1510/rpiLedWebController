@@ -65,15 +65,17 @@ def ledControl(action, isOn, brightness, last):
 
     if brightness != None:
         strip.setBrightness(int(brightness))
+        pixels.brightness(float(int(brightness)/255))
         strip.begin()
+        pixels.show()
         return redirect("/"+last, code=302)
 
     if action == "red":
-        colorStatic(strip, Color(255, 0, 0))
+        colorStatic(Color(255, 0, 0))
     if action == "green":
-        colorStatic(strip, Color(0, 255, 0))
+        colorStatic(Color(0, 255, 0))
     if action == "blue":
-        colorStatic(strip, Color(0, 0, 255))
+        colorStatic(Color(0, 0, 255))
 
     if action == "rainbow":
         rainbow(strip)
