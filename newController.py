@@ -60,9 +60,8 @@ def ledControl(action, isOn, brightness, last):
 
     if action == "off":
         whileOn = False
-        pixels.deinit()
+        pixels.fill(0, 0, 0)
         strip.begin()
-        pixels.begin()
 
     if brightness != None:
         floatBr = float(brightness / 255)
