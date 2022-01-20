@@ -141,4 +141,4 @@ def bri(brightness):
 
 if __name__=="__main__":
     print("Start")
-    app.run(debug=True, host='192.168.1.116')
+    app.run(debug=False, host='192.168.1.116')
