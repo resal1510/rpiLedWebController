@@ -7,8 +7,6 @@ from math import *
 
 app= Flask(__name__)
 isOn = False
-lastChoosed = ""
-
 
 # LED strip configuration:
 LED_COUNT      = 143      # Number of LED pixels.
@@ -76,27 +74,22 @@ def index():
 
 @app.route('/A')
 def led1on():
-    lastChoosed = "A"
     colorStatic(strip, Color(255, 0, 0))
     return render_template('webpage.html')
 
 @app.route('/a')
 def led1off():
-    lastChoosed = "a"
     colorStatic(strip, Color(0, 255, 0))
     return render_template('webpage.html')
 
 @app.route('/B')
 def led2on():
-    lastChoosed = "B"
-    print("oui")
     colorStatic(strip, Color(0, 0, 255))
     return render_template('webpage.html')
 
 @app.route('/b')
 def led2off():
     isOn = True
-    lastChoosed = "b"
     while isOn:
         print ('Color wipe animations.')
         colorWipe(strip, Color(50, 50, 255))  # Violet wipe
@@ -105,13 +98,14 @@ def led2off():
 
 @app.route('/C')
 def led3on():
+    lastChoosed = "C"
     return render_template('webpage.html')
 
 @app.route('/c')
 def led3off():
     isOn = False
-    colorWipe(strip, Color(0,0,0), 5)
     lastChoosed = "c"
+    colorWipe(strip, Color(0,0,0), 5)
     return render_template('webpage.html')
 
 @app.route('/bright25')
@@ -143,6 +137,8 @@ def bright100():
 @app.route('/bri/<brightness>')
 def bri(brightness):
     strip.setBrightness(int(brightness))
+    lastColor = strip.getPixelColor(0)
+    print(lastColor)
     strip.begin()
     return redirect("192.168.1.116/"+lastChoosed, code=302)
     #return render_template('webpage.html')
