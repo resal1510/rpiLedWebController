@@ -29,7 +29,7 @@ def colorWipe(strip, color, wait_ms=50):
         strip.show()
         time.sleep(wait_ms/1000.0)
 
-def colorStatic(strip, color):
+def colorStatic(color):
     pixels.fill((color))
 
 def wheel(pos):
