@@ -64,10 +64,10 @@ def ledControl(action, isOn, brightness, last):
         strip.begin()
 
     if brightness != None:
-        floatBr = float((int(brightness)) / 255)
-        strip.setBrightness(int(brightness))
+        floatBr = float(brightness / 255)
+        strip.setBrightness(brightness)
         print(floatBr)
-        pixels.brightness(floatBr)
+        pixels.brightness(round(floatBr, 2))
         strip.begin()
         pixels.show()
         return redirect("/"+last, code=302)
@@ -117,7 +117,7 @@ def routeb(): ledControl("w-bluepurple", True, None, None); return render_templa
 def routec(): ledControl("off", False, None, None); return render_template('webpage.html')
 
 @app.route('/bri/<brightness>/<last>')
-def routeBri(brightness, last): ledControl("blue", False, brightness, last); return render_template('webpage.html')
+def routeBri(brightness, last): ledControl("blue", False, int(brightness), last); return render_template('webpage.html')
 
 if __name__=="__main__":
     print("Start")
