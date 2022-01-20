@@ -4,9 +4,13 @@ import time
 from rpi_ws281x import *
 import argparse
 from math import *
+import board
+import neopixel
 
 app= Flask(__name__)
 isOn = False
+pixels = neopixel.NeoPixel(board.D18, 143)
+
 
 # LED strip configuration:
 LED_COUNT      = 143      # Number of LED pixels.
@@ -26,10 +30,7 @@ def colorWipe(strip, color, wait_ms=50):
         time.sleep(wait_ms/1000.0)
 
 def colorStatic(strip, color):
-    """Wipe color across display a pixel at a time."""
-    for i in range(strip.numPixels()):
-        strip.setPixelColor(i, color)
-        strip.show()
+    pixels.fill((color))
 
 def wheel(pos):
     """Generate rainbow colors across 0-255 positions."""
