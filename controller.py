@@ -88,7 +88,7 @@ def led2on():
     return render_template('webpage.html')
 
 @app.route('/b')
-def led2off():
+def led2off(isOn):
     isOn = True
     while isOn:
         print ('Color wipe animations.')
@@ -102,36 +102,10 @@ def led3on():
     return render_template('webpage.html')
 
 @app.route('/c')
-def led3off():
+def led3off(isOn):
     isOn = False
     lastChoosed = "c"
-    colorWipe(strip, Color(0,0,0), 5)
-    return render_template('webpage.html')
-
-@app.route('/bright25')
-def bright25():
-    strip.setBrightness(floor((255/100)*25))
-    strip.begin()
-    return render_template('webpage.html')
-
-@app.route('/bright50')
-def bright50():
-    LED_BRIGHTNESS = floor((255/100)*50)
-    strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
-    strip.begin()
-    return render_template('webpage.html')
-
-@app.route('/bright75')
-def bright75():
-    LED_BRIGHTNESS = floor((255/100)*75)
-    strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
-    strip.begin()
-    return render_template('webpage.html')
-
-@app.route('/bright100')
-def bright100():
-    strip.setBrightness(255)
-    strip.begin()
+    colorWipe(strip, Color(0,0,0), 2)
     return render_template('webpage.html')
 
 @app.route('/bri/<brightness>/<last>')
