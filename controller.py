@@ -76,20 +76,21 @@ def index():
 
 @app.route('/A')
 def led1on():
-    colorStatic(strip, Color(255, 0, 0))
     lastChoosed = "A"
+    colorStatic(strip, Color(255, 0, 0))
     return render_template('webpage.html')
 
 @app.route('/a')
 def led1off():
-    colorStatic(strip, Color(0, 255, 0))
     lastChoosed = "a"
+    colorStatic(strip, Color(0, 255, 0))
     return render_template('webpage.html')
 
 @app.route('/B')
 def led2on():
-    colorStatic(strip, Color(0, 0, 255))
     lastChoosed = "B"
+    print("oui")
+    colorStatic(strip, Color(0, 0, 255))
     return render_template('webpage.html')
 
 @app.route('/b')
