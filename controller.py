@@ -7,6 +7,7 @@ from math import *
 
 app= Flask(__name__)
 isOn = False
+lastChoosed = ""
 
 
 # LED strip configuration:
@@ -76,21 +77,25 @@ def index():
 @app.route('/A')
 def led1on():
     colorStatic(strip, Color(255, 0, 0))
+    lastChoosed = "A"
     return render_template('webpage.html')
 
 @app.route('/a')
 def led1off():
     colorStatic(strip, Color(0, 255, 0))
+    lastChoosed = "a"
     return render_template('webpage.html')
 
 @app.route('/B')
 def led2on():
     colorStatic(strip, Color(0, 0, 255))
+    lastChoosed = "B"
     return render_template('webpage.html')
 
 @app.route('/b')
 def led2off():
     isOn = True
+    lastChoosed = "b"
     while isOn:
         print ('Color wipe animations.')
         colorWipe(strip, Color(50, 50, 255))  # Violet wipe
@@ -105,6 +110,7 @@ def led3on():
 def led3off():
     isOn = False
     colorWipe(strip, Color(0,0,0), 5)
+    lastChoosed = "c"
     return render_template('webpage.html')
 
 @app.route('/bright25')
@@ -137,7 +143,8 @@ def bright100():
 def bri(brightness):
     strip.setBrightness(int(brightness))
     strip.begin()
-    return render_template('webpage.html')
+    return redirect("192.168.1.116/"+lastChoosed, code=302)
+    #return render_template('webpage.html')
 
 if __name__=="__main__":
     print("Start")
