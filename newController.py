@@ -62,7 +62,6 @@ def ledControl(action, isOn, brightness, last):
 
     if action == "red":
         colorStatic(strip, Color(255, 0, 0))
-        return render_template('webpage.html')
     if action == "green":
         colorStatic(strip, Color(0, 255, 0))
     if action == "blue":
@@ -89,7 +88,7 @@ def index():
     return render_template('webpage.html')
 
 @app.route('/A')
-def routeA(): ledControl("red", False, None, None)
+def routeA(): ledControl("red", False, None, None); return render_template('webpage.html')
 
 @app.route('/a')
 def routea(): ledControl("green", False, None, None)
