@@ -61,7 +61,9 @@ def ledControl(action, isOn, brightness, last):
     if action == "off":
         whileOn = False
         pixels.deinit()
+        pixels = neopixel.NeoPixel(board.D18, 143)
         strip.begin()
+        pixels.show
 
     if brightness != None:
         floatBr = float(brightness / 255)
