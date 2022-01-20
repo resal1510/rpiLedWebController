@@ -138,7 +138,7 @@ def bright100():
 def bri(brightness, last):
     strip.setBrightness(int(brightness))
     strip.begin()
-    return redirect("192.168.1.116/"+last, code=302)
+    return redirect("/"+last, code=302)
     #return render_template('webpage.html')
 
 if __name__=="__main__":
