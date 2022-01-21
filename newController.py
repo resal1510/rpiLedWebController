@@ -40,9 +40,9 @@ def colorStatic(color):
 
 def stopCheck(stopVar):
     if stopVar == True:
-        isStopped = False
-    else:
         isStopped = True
+    else:
+        isStopped = False
 
     print(isStopped)
     if stopVar == "check":
@@ -102,9 +102,10 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
     if action == "rainbow":
         while whileOn:
             rainbow(strip)
-            whileOn = stopCheck("check")
-            print(whileOn)
-
+            print(stopCheck("check"))
+            if stopCheck("check"):
+                break
+            
     #When wipe between blue and purple effect button pressed
     if action == "w-bluepurple":
         while whileOn:
