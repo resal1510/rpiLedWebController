@@ -43,6 +43,7 @@ def stopCheck(stopVar):
     else:
         isStopped = True
 
+    print(isStopped)
     if stopVar == "check":
         return isStopped
 
