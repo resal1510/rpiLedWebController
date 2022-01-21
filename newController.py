@@ -21,8 +21,6 @@ piHost         = "192.168.1.116"    # IP / Hostname of the raspberry that host t
 #Set needed variable
 app= Flask(__name__)
 isOn = False
-global stopVar
-global isStopped
 isStopped = False
 pixels = neopixel.NeoPixel(board.D18, 143)
 
@@ -39,11 +37,6 @@ def colorStatic(color):
     pixels.fill((color))
 
 def stopCheck(stopVar):
-    if stopVar == True:
-        isStopped = True
-    else:
-        isStopped = False
-
     print(isStopped)
     if stopVar == "check":
         return isStopped
@@ -77,9 +70,8 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
     #When OFF button pressed
     if action == "off":
         whileOn = False
-        stopCheck(True)
-        ledControl("w-bluepurple", False, None, None)
-        ledControl("rainbow", False, None, None)
+        #ledControl("w-bluepurple", False, None, None)
+        #ledControl("rainbow", False, None, None)
         pixels.fill((0, 0, 0))
 
     #When brightness is changed
@@ -103,7 +95,7 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
         while whileOn:
             rainbow(strip)
             print(stopCheck("check"))
-            if stopCheck("check"):
+            if whileOn == False:
                 break
             
     #When wipe between blue and purple effect button pressed
