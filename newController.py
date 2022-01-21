@@ -62,14 +62,18 @@ def rainbow(strip, wait_ms=20, iterations=1):
 
 # Define main function that manage all leds effects calls
 def ledControl(action, isOn, brightness, last, rgbColors=None):
+    whileOn = False
+    print(whileOn)
     if isOn:
         whileOn = True
     else:
         whileOn = False
 
+    print(whileOn)
     #When OFF button pressed
     if action == "off":
         whileOn = False
+        print(whileOn)
         #ledControl("w-bluepurple", False, None, None)
         #ledControl("rainbow", False, None, None)
         pixels.fill((0, 0, 0))
