@@ -22,6 +22,8 @@ piHost         = "192.168.1.116"    # IP / Hostname of the raspberry that host t
 app= Flask(__name__)
 isOn = False
 isStopped = False
+global whileOn
+whileOn = True
 pixels = neopixel.NeoPixel(board.D18, 143)
 
 # Define function to do a wipe animation
