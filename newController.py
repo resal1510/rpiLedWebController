@@ -63,7 +63,7 @@ def rainbow(strip, wait_ms=20, iterations=1):
 # Define main function that manage all leds effects calls
 def ledControl(action, isOn, brightness, last, rgbColors=None):
     whileOn = False
-    print(string(whileOn) + "1")
+    print(str(whileOn) + "1")
     if isOn:
         whileOn = True
     else:
@@ -73,7 +73,7 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
     #When OFF button pressed
     if action == "off":
         whileOn = False
-        print(string(whileOn) + "3")
+        print(str(whileOn) + "3")
         #ledControl("w-bluepurple", False, None, None)
         #ledControl("rainbow", False, None, None)
         pixels.fill((0, 0, 0))
@@ -96,12 +96,12 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
 
     #When Rainbow effect button pressed
     if action == "rainbow":
-        print(string(whileOn) + "4")
+        print(str(whileOn) + "4")
         while whileOn:
             rainbow(strip)
-            print(string(whileOn) + "5")
+            print(str(whileOn) + "5")
             if whileOn == False:
-                print(string(whileOn) + "6")
+                print(str(whileOn) + "6")
                 break
             
     #When wipe between blue and purple effect button pressed
