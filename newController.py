@@ -69,12 +69,12 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
     print(str(whileOn) + "1")
     if isOn:
         whileOn = True
-    else:
+    if isOn == False:
         whileOn = False
 
     def stopCheck(stopVar):
         if stopVar == "check":
-            return whileOn
+            return isOn
 
     def stopFunc():
         return stopCheck("check")
