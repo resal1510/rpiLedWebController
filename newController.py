@@ -139,7 +139,12 @@ if __name__ == '__main__':
 def index(): return render_template('webpage.html')
 
 @app.route('/A')
-def routeA(): ledControl("red", False, None, None); return render_template('webpage.html')
+def routeA(): 
+    ledControl("red", False, None, None)
+    while True:
+        print("ok")
+        time.sleep(1)
+    return render_template('webpage.html')
 
 @app.route('/a')
 def routea(): ledControl("green", False, None, None); return render_template('webpage.html')
