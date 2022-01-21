@@ -59,6 +59,10 @@ def rainbow(strip, wait_ms=20, iterations=1):
             strip.setPixelColor(i, wheel((i+j) & 255))
         strip.show()
         time.sleep(wait_ms/1000.0)
+    print(str(whileOn) + "7")
+    if whileOn == False:
+        print(str(whileOn) + "8")
+        return True
 
 # Define main function that manage all leds effects calls
 def ledControl(action, isOn, brightness, last, rgbColors=None):
@@ -98,7 +102,9 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
     if action == "rainbow":
         print(str(whileOn) + "4")
         while whileOn:
-            rainbow(strip)
+            if rainbow(strip):
+                print("break")
+                break
             print(str(whileOn) + "5")
             if whileOn == False:
                 print(str(whileOn) + "6")
