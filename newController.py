@@ -23,7 +23,9 @@ app= Flask(__name__)
 isOn = False
 isStopped = False
 global whileOn
+global testStop
 whileOn = True
+testStop = True
 pixels = neopixel.NeoPixel(board.D18, 143)
 
 # Define function to do a wipe animation
@@ -44,7 +46,7 @@ def stopCheck(stopVar, change=None):
         isStopped = change
 
     if stopVar == "check":
-        return isStopped
+        return testStop
 
 def stopFunc():
     return stopCheck("check")
@@ -158,7 +160,7 @@ def routeb(): ledControl("w-bluepurple", True, None, None); return render_templa
 def routeC(): ledControl("rainbow", True, None, None); return render_template('webpage.html')
 
 @app.route('/c')
-def routec(): ledControl("off", False, None, None); return render_template('webpage.html')
+def routec(): ledControl("off", False, None, None); testStop = False; return render_template('webpage.html')
 
 @app.route('/bri/<brightness>/<last>')
 def routeBri(brightness, last): ledControl("blue", False, int(brightness), last); return render_template('webpage.html')
