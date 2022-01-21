@@ -38,10 +38,15 @@ def colorWipe(strip, color, wait_ms=50):
 def colorStatic(color):
     pixels.fill((color))
 
-def stopCheck(stopVar):
-    print(isStopped)
+def stopCheck(stopVar, change=None):
+    if change != None:
+        isStopped = change
+
     if stopVar == "check":
         return isStopped
+
+def stopFunc():
+    return stopCheck("check")
 
 # Define function that generate rainbow colors for the rainbow effect
 def wheel(pos):
@@ -79,6 +84,7 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
     #When OFF button pressed
     if action == "off":
         whileOn = False
+        stopCheck(True, False)
         print(str(whileOn) + "3")
         #ledControl("w-bluepurple", False, None, None)
         #ledControl("rainbow", False, None, None)
@@ -104,13 +110,8 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
     if action == "rainbow":
         print(str(whileOn) + "4")
         while whileOn:
-            if rainbow(strip):
-                print("break")
-                break
-            print(str(whileOn) + "5")
-            if whileOn == False:
-                print(str(whileOn) + "6")
-                break
+            rainbow(strip)
+            whileOn = stopFunc()
             
     #When wipe between blue and purple effect button pressed
     if action == "w-bluepurple":
