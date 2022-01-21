@@ -106,7 +106,9 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
         print(str(whileOn) + "4")
         while whileOn:
             rainbow(strip)
+            print(isOn)
             whileOn = stopCheck("check", isOn)
+            print(whileOn)
             
     #When wipe between blue and purple effect button pressed
     if action == "w-bluepurple":
