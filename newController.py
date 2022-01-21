@@ -69,7 +69,7 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
     else:
         whileOn = False
 
-    print(whileOn + "2")
+    print(str(whileOn) + "2")
     #When OFF button pressed
     if action == "off":
         whileOn = False
