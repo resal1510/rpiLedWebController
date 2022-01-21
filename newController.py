@@ -74,7 +74,7 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
 
     def stopCheck(stopVar):
         if stopVar == "check":
-            return isOn
+            return False
 
     def stopFunc():
         return stopCheck("check")
