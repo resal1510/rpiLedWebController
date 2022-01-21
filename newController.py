@@ -40,17 +40,6 @@ def colorWipe(strip, color, wait_ms=50):
 def colorStatic(color):
     pixels.fill((color))
 
-def stopCheck(stopVar, change=None):
-    isStopped = True
-    if change != None:
-        isStopped = change
-
-    if stopVar == "check":
-        return testStop
-
-def stopFunc():
-    return stopCheck("check")
-
 # Define function that generate rainbow colors for the rainbow effect
 def wheel(pos):
     if pos < 85:
@@ -83,11 +72,16 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
     else:
         whileOn = False
 
-    print(str(whileOn) + "2")
+    def stopCheck(stopVar):
+        if stopVar == "check":
+            return whileOn
+
+    def stopFunc():
+        return stopCheck("check")
+
     #When OFF button pressed
     if action == "off":
         whileOn = False
-        stopCheck(True, False)
         print(str(whileOn) + "3")
         #ledControl("w-bluepurple", False, None, None)
         #ledControl("rainbow", False, None, None)
@@ -114,7 +108,7 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
         print(str(whileOn) + "4")
         while whileOn:
             rainbow(strip)
-            whileOn = stopFunc()
+            whileOn = stopCheck("check")
             
     #When wipe between blue and purple effect button pressed
     if action == "w-bluepurple":
@@ -160,7 +154,7 @@ def routeb(): ledControl("w-bluepurple", True, None, None); return render_templa
 def routeC(): ledControl("rainbow", True, None, None); return render_template('webpage.html')
 
 @app.route('/c')
-def routec(): ledControl("off", False, None, None); testStop = False; return render_template('webpage.html')
+def routec(): ledControl("off", False, None, None); return render_template('webpage.html')
 
 @app.route('/bri/<brightness>/<last>')
 def routeBri(brightness, last): ledControl("blue", False, int(brightness), last); return render_template('webpage.html')
