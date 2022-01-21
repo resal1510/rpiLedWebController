@@ -37,7 +37,7 @@ def colorWipe(strip, color, wait_ms=50):
 def colorStatic(color):
     pixels.fill((color))
 
-def stopFunc(stopVar):
+def stopFunc(stopVar=None):
     if stopVar:
         isStopped = False
     else:
