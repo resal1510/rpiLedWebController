@@ -65,7 +65,6 @@ def rainbow(strip, wait_ms=20, iterations=1):
 
 # Define main function that manage all leds effects calls
 def ledControl(action, isOn, brightness, last, rgbColors=None):
-    print(str(whileOn) + "1")
     if isOn:
         whileOn = True
     else:
