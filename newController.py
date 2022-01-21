@@ -21,6 +21,8 @@ piHost         = "192.168.1.116"    # IP / Hostname of the raspberry that host t
 #Set needed variable
 app= Flask(__name__)
 isOn = False
+global stopVar
+stopVar = False
 pixels = neopixel.NeoPixel(board.D18, 143)
 
 # Define function to do a wipe animation
@@ -34,6 +36,13 @@ def colorWipe(strip, color, wait_ms=50):
 # Define function to show a static color without animation
 def colorStatic(color):
     pixels.fill((color))
+
+def stopFunc(stopVar):
+    if stopVar:
+        isStopped = False
+    else:
+        isStopped = True
+    return isStopped
 
 # Define function that generate rainbow colors for the rainbow effect
 def wheel(pos):
@@ -64,6 +73,7 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
     #When OFF button pressed
     if action == "off":
         whileOn = False
+        stopFunc(True)
         ledControl("w-bluepurple", False, None, None)
         ledControl("rainbow", False, None, None)
         pixels.fill((0, 0, 0))
@@ -88,6 +98,8 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
     if action == "rainbow":
         while whileOn:
             rainbow(strip)
+            whileOn = stopFunc()
+            print(whileOn)
 
     #When wipe between blue and purple effect button pressed
     if action == "w-bluepurple":
