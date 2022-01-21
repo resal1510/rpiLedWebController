@@ -127,10 +127,10 @@ def routea(): ledControl("green", False, None, None); return render_template('we
 def routeB(): ledControl("blue", False, None, None); return render_template('webpage.html')
 
 @app.route('/b')
-def routeb(): ledControl("w-bluepurple", True, None, None); return render_template('webpage.html')
+def routeb(): ledControl("w-bluepurple", False, None, None); return render_template('webpage.html')
 
 @app.route('/C')
-def routeC(): ledControl("rainbow", True, None, None); return render_template('webpage.html')
+def routeC(): ledControl("rainbow", False, None, None); return render_template('webpage.html')
 
 @app.route('/c')
 def routec(): ledControl("off", False, None, None); return render_template('webpage.html')
