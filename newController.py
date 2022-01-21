@@ -67,8 +67,6 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
         ledControl("w-bluepurple", False, None, None)
         ledControl("rainbow", False, None, None)
         pixels.fill((0, 0, 0))
-        strip.begin()
-        strip.show()
 
     #When brightness is changed
     if brightness != None:
