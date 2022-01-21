@@ -22,10 +22,10 @@ piHost         = "192.168.1.116"    # IP / Hostname of the raspberry that host t
 app= Flask(__name__)
 isOn = False
 isStopped = False
-global whileOn
-global testStop
 whileOn = True
-testStop = True
+
+
+temp = True
 pixels = neopixel.NeoPixel(board.D18, 143)
 
 # Define function to do a wipe animation
@@ -65,16 +65,15 @@ def rainbow(strip, wait_ms=20, iterations=1):
 
 # Define main function that manage all leds effects calls
 def ledControl(action, isOn, brightness, last, rgbColors=None):
-    whileOn = False
     print(str(whileOn) + "1")
     if isOn:
         whileOn = True
-    if isOn == False:
+    else:
         whileOn = False
 
-    def stopCheck(stopVar):
+    def stopCheck(stopVar, actualStop=True):
         if stopVar == "check":
-            return False
+            return actualStop
 
     def stopFunc():
         return stopCheck("check")
@@ -108,7 +107,7 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
         print(str(whileOn) + "4")
         while whileOn:
             rainbow(strip)
-            whileOn = stopCheck("check")
+            whileOn = stopCheck("check", isOn)
             
     #When wipe between blue and purple effect button pressed
     if action == "w-bluepurple":
