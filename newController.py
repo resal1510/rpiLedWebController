@@ -39,6 +39,7 @@ def colorStatic(color):
     pixels.fill((color))
 
 def stopCheck(stopVar, change=None):
+    isStopped = True
     if change != None:
         isStopped = change
 
