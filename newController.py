@@ -66,6 +66,7 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
         whileOn = False
         pixels.fill((0, 0, 0))
         strip.begin()
+        strip.show()
 
     #When brightness is changed
     if brightness != None:
@@ -85,7 +86,8 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
 
     #When Rainbow effect button pressed
     if action == "rainbow":
-        rainbow(strip)
+        while whileOn:
+            rainbow(strip)
 
     #When wipe between blue and purple effect button pressed
     if action == "w-bluepurple":
