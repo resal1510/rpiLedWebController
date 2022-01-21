@@ -94,7 +94,7 @@ def ledControl(action, isOn, brightness, last, rgbColors=None):
     if action == "rainbow":
         while whileOn:
             rainbow(strip)
-            print(stopCheck("check"))
+            print(whileOn)
             if whileOn == False:
                 break
             
